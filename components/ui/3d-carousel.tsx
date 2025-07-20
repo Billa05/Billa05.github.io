@@ -42,7 +42,7 @@ const Carousel = memo(
     isDark: boolean
   }) => {
     const isScreenSizeSm = useMediaQuery("(max-width: 640px)")
-    const cylinderWidth = isScreenSizeSm ? 600 : 1300
+    const cylinderWidth = isScreenSizeSm ? 320 : 1300
     const faceCount = projects.length
     const faceWidth = cylinderWidth / faceCount
     const radius = cylinderWidth / (2 * Math.PI)
@@ -54,15 +54,17 @@ const Carousel = memo(
 
     return (
       <div
-        className="flex h-full items-center justify-center bg-transparent"
+        className="flex h-full items-center justify-center bg-transparent overflow-x-auto md:overflow-x-visible"
         style={{
           perspective: "1000px",
           transformStyle: "preserve-3d",
           willChange: "transform",
+          minWidth: isScreenSizeSm ? 320 : undefined,
         }}
       >
         <motion.div
           drag={isCarouselActive ? "x" : false}
+          dragConstraints={isScreenSizeSm ? { left: -cylinderWidth / 2, right: cylinderWidth / 2 } : false}
           className="relative flex h-full origin-center cursor-grab justify-center active:cursor-grabbing"
           style={{
             transform,
@@ -91,16 +93,16 @@ const Carousel = memo(
           {projects.map((project, i) => (
             <motion.div
               key={`key-${project.name}-${i}`}
-              className="absolute flex h-full origin-center items-center justify-center rounded-xl p-2"
+              className="absolute flex h-full origin-center items-center justify-center rounded-xl p-1 md:p-2"
               style={{
-                width: `${faceWidth}px`,
+                width: isScreenSizeSm ? `180px` : `${faceWidth}px`,
                 transform: `rotateY(${i * (360 / faceCount)}deg) translateZ(${radius}px)`,
               }}
             >
-              <Card className={`w-full max-w-[260px] flex flex-col justify-between overflow-hidden border rounded-xl ${isDark ? "border-black/20 bg-white/60" : "border-white/30 bg-black/40"}`}>
-                <CardHeader className="p-4 pb-2">
+              <Card className={`w-full max-w-[180px] md:max-w-[260px] flex flex-col justify-between overflow-hidden border rounded-xl ${isDark ? "border-black/20 bg-white/60" : "border-white/30 bg-black/40"}`}>
+                <CardHeader className="p-2 md:p-4 pb-1 md:pb-2">
                   <CardTitle
-                    className={`text-lg font-semibold truncate transition-colors ${isDark ? "text-black hover:text-blue-600" : "text-white hover:text-blue-400"}`}
+                    className={`text-base md:text-lg font-semibold truncate transition-colors ${isDark ? "text-black hover:text-blue-600" : "text-white hover:text-blue-400"}`}
                     title={project.name}
                   >
                     <a
@@ -113,13 +115,13 @@ const Carousel = memo(
                     </a>
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="flex-1 p-4 pt-2 flex flex-col justify-between">
-                  <div className="mb-2 flex flex-wrap gap-1">
+                <CardContent className="flex-1 p-2 md:p-4 pt-1 md:pt-2 flex flex-col justify-between">
+                  <div className="mb-1 md:mb-2 flex flex-wrap gap-1">
                     {project.stack.split(",").map((skill, idx) => (
                       <Badge key={idx} className={`mb-1 ${isDark ? "bg-black/10 text-black/80" : "bg-white/10 text-white/80"}`}>{skill.trim()}</Badge>
                     ))}
                   </div>
-                  <ul className="mb-2 list-disc pl-4 text-xs space-y-1 max-h-[70px] overflow-y-auto">
+                  <ul className="mb-1 md:mb-2 list-disc pl-4 text-[10px] md:text-xs space-y-1 max-h-[40px] md:max-h-[70px] overflow-y-auto">
                     {project.bullets && project.bullets.map((bullet, idx) => (
                       <li key={idx} className={isDark ? "text-black/80" : "text-white/80"}>{bullet}</li>
                     ))}
@@ -139,7 +141,7 @@ function ThreeDPhotoCarousel({ projects, isDark }: { projects: { name: string; s
   const controls = useAnimation()
   return (
     <motion.div layout className="relative">
-      <div className="relative h-[300px] w-full overflow-hidden">
+      <div className="relative h-[180px] md:h-[300px] w-full overflow-x-auto md:overflow-x-visible">
         <Carousel
           controls={controls}
           projects={projects}

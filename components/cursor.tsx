@@ -3,6 +3,18 @@
 import React, { useEffect, useState } from 'react'
 import { motion, AnimatePresence, useMotionValue } from 'framer-motion'
 import { cn } from '@/lib/utils'
+import { useEffect as useLayoutEffect } from 'react'
+
+function useIsDesktop() {
+  const [isDesktop, setIsDesktop] = useState(true);
+  useLayoutEffect(() => {
+    const check = () => setIsDesktop(window.matchMedia('(min-width: 768px)').matches);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+  return isDesktop;
+}
 
 export const Pointer = ({
   children,
@@ -16,6 +28,7 @@ export const Pointer = ({
   const ref = React.useRef<HTMLDivElement>(null)
   const [rect, setRect] = useState<DOMRect | null>(null)
   const [isInside, setIsInside] = useState<boolean>(false)
+  const isDesktop = useIsDesktop();
 
   useEffect(() => {
     if (ref.current) {
@@ -36,11 +49,11 @@ export const Pointer = ({
         }
       }}
       style={{
-        cursor: 'none'
+        cursor: isDesktop ? 'none' : undefined
       }}
       ref={ref}
       className={cn('relative', className)}>
-      <AnimatePresence>{isInside && <FollowPointer x={x} y={y} />}</AnimatePresence>
+      {isDesktop && <AnimatePresence>{isInside && <FollowPointer x={x} y={y} />}</AnimatePresence>}
       {children}
     </div>
   )

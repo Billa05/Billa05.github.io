@@ -52,15 +52,15 @@ export function ProjectsCard({ isDark }: { isDark: boolean }) {
         isDark ? "bg-black/70 border-white/20" : "bg-white/50 border-black/20"
       }`}
     >
-      <CardHeader className="w-full">
+      <CardHeader className="w-full px-3 py-2 md:px-6 md:py-4">
         <CardTitle
-          className={`text-xl font-light text-left transition-colors duration-300 ${isDark ? "text-white" : "text-black"}`}
+          className={`text-lg md:text-xl font-light text-left transition-colors duration-300 ${isDark ? "text-white" : "text-black"}`}
         >
           Projects
         </CardTitle>
       </CardHeader>
-      <CardContent className="flex flex-1 flex-col justify-center items-center w-full h-full max-h-full overflow-hidden">
-        <div className="w-full max-w-[90%] h-full overflow-hidden flex items-center justify-center">
+      <CardContent className="flex flex-1 flex-col justify-center items-center w-full h-full max-h-full overflow-hidden p-1 md:p-0">
+        <div className="w-full max-w-full md:max-w-[90%] h-full overflow-x-auto md:overflow-hidden flex items-center justify-center">
           <ThreeDPhotoCarousel projects={projects} isDark={isDark} />
         </div>
       </CardContent>

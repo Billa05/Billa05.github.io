@@ -66,6 +66,41 @@ const DraggableSkillBadge: React.FC<DraggableSkillBadgeProps> = ({
     [skill.id, onPositionChange, dragOffset, containerRef]
   );
 
+  // Touch support for mobile
+  const handleTouchStart = useCallback(
+    (e: React.TouchEvent) => {
+      if (!badgeRef.current || !containerRef.current) return;
+      const touch = e.touches[0];
+      const badgeRect = badgeRef.current.getBoundingClientRect();
+      const containerRect = containerRef.current.getBoundingClientRect();
+      setDragOffset({
+        x: touch.clientX - badgeRect.left,
+        y: touch.clientY - badgeRect.top,
+      });
+      setIsDragging(true);
+      const handleTouchMove = (e: TouchEvent) => {
+        if (!containerRef.current) return;
+        const touch = e.touches[0];
+        const containerRect = containerRef.current.getBoundingClientRect();
+        const newX = touch.clientX - containerRect.left - dragOffset.x;
+        const newY = touch.clientY - containerRect.top - dragOffset.y;
+        const maxX = containerRect.width - 120;
+        const maxY = containerRect.height - 32;
+        const clampedX = Math.max(0, Math.min(newX, maxX));
+        const clampedY = Math.max(0, Math.min(newY, maxY));
+        onPositionChange(skill.id, { x: clampedX, y: clampedY });
+      };
+      const handleTouchEnd = () => {
+        setIsDragging(false);
+        document.removeEventListener("touchmove", handleTouchMove);
+        document.removeEventListener("touchend", handleTouchEnd);
+      };
+      document.addEventListener("touchmove", handleTouchMove);
+      document.addEventListener("touchend", handleTouchEnd);
+    },
+    [skill.id, onPositionChange, dragOffset, containerRef]
+  );
+
   return (
     <div
       ref={badgeRef}
@@ -74,12 +109,14 @@ const DraggableSkillBadge: React.FC<DraggableSkillBadgeProps> = ({
         left: skill.position.x,
         top: skill.position.y,
         transform: isDragging ? "rotate(5deg)" : "rotate(0deg)",
+        touchAction: "none"
       }}
       onMouseDown={handleMouseDown}
+      onTouchStart={handleTouchStart}
     >
       <Badge
         variant={skill.color}
-        className={`group relative px-4 py-2 text-sm font-medium bg-transparent shadow-none border transition-all duration-200 flex items-center gap-1 ${isDragging ? "ring-2 ring-primary ring-offset-2" : ""} ${isDark ? "border-white/40 text-white" : "border-black/40 text-black"} ${badgeClass}`}
+        className={`group relative px-4 py-2 text-xs md:text-sm font-medium bg-transparent shadow-none border transition-all duration-200 flex items-center gap-1 ${isDragging ? "ring-2 ring-primary ring-offset-2" : ""} ${isDark ? "border-white/40 text-white" : "border-black/40 text-black"} ${badgeClass}`}
         style={{ backgroundColor: isDark ? "rgba(0,0,0,0.7)" : "rgba(255,255,255,0.7)" }}
       >
         <Move className={`w-3 h-3 mr-1 opacity-60 ${isDark ? "text-white" : "text-black"}`} />

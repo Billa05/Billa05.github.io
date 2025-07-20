@@ -12,14 +12,14 @@ export function SkillsCard({ isDark }: { isDark: boolean }) {
         isDark ? "bg-black/70 border-white/20" : "bg-white/50 border-black/20"
       }`}
     >
-      <CardHeader>
+      <CardHeader className="px-3 py-2 md:px-6 md:py-4">
         <CardTitle
-          className={`text-xl font-light transition-colors duration-300 ${isDark ? "text-white" : "text-black"}`}
+          className={`text-lg md:text-xl font-light transition-colors duration-300 ${isDark ? "text-white" : "text-black"}`}
         >
           Skills
         </CardTitle>
       </CardHeader>
-      <CardContent className="flex-1 h-full p-0"> {/* Make CardContent fill remaining space */}
+      <CardContent className="flex-1 h-full p-1 md:p-0"> {/* Responsive padding for CardContent */}
         <InteractiveSkillsBoard isDark={isDark} badgeClass={badgeClass} />
       </CardContent>
     </Card>

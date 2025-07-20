@@ -53,8 +53,6 @@ const InteractiveSkillsBoard: React.FC<InteractiveSkillsBoardProps> = ({ initial
   const handlePositionChange = useCallback((id: string, position: { x: number; y: number }) => {
     setSkills((prev) => {
       const updated = prev.map((skill) => (skill.id === id ? { ...skill, position } : skill));
-      // Uncomment to log all skills' positions in order for debugging or future use:
-      // console.log("Skill positions:", updated.map(s => ({ name: s.name, position: s.position })));
       return updated;
     });
   }, []);
@@ -64,10 +62,10 @@ const InteractiveSkillsBoard: React.FC<InteractiveSkillsBoardProps> = ({ initial
   }, []);
 
   return (
-    <Card className="relative bg-transparent border-0 shadow-none h-full w-full p-0">
+    <Card className="relative bg-transparent border-0 shadow-none h-[320px] md:h-full w-full p-0 overflow-x-auto">
       <div
         ref={containerRef}
-        className="relative w-full h-full"
+        className="relative w-[900px] md:w-full h-full min-h-[320px] md:min-h-0 overflow-visible touch-pan-x"
         style={{ height: "100%" }} // Ensure it fills the parent
       >
         {skills.map((skill) => (

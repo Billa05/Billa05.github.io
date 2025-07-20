@@ -48,9 +48,9 @@ export function AboutMeCard({ isDark }: { isDark: boolean }) {
       </CardHeader>
       <CardContent>
         {/* Bio Points */}
-        <div className="space-y-5 mb-12">
+        <div className="space-y-4 md:space-y-5 mb-8 md:mb-12">
           {bioPoints.map((point, idx) => (
-            <div key={idx} className="flex items-start gap-3">
+            <div key={idx} className="flex items-start gap-2 md:gap-3">
               <Badge
                 className={`mt-1 shrink-0 rounded-full px-2 py-1 text-xs font-medium transition-colors duration-300 ${
                   isDark ? "bg-white/10 text-white border-white/20" : "bg-black/10 text-black border-black/20"
@@ -59,7 +59,7 @@ export function AboutMeCard({ isDark }: { isDark: boolean }) {
               >
                 <ArrowRight className={`w-3 h-3 ${isDark ? "text-white/80" : "text-black/80"}`} />
               </Badge>
-              <span className={`text-sm font-light transition-colors duration-300 ${isDark ? "text-white/90" : "text-black/90"}`}>{point}</span>
+              <span className={`text-xs md:text-sm font-light transition-colors duration-300 ${isDark ? "text-white/90" : "text-black/90"}`}>{point}</span>
             </div>
           ))}
         </div>
@@ -67,13 +67,13 @@ export function AboutMeCard({ isDark }: { isDark: boolean }) {
         {/* Socials */}
         <div>
           <h3
-            className={`text-sm font-light mb-4 transition-colors duration-300 ${
+            className={`text-xs md:text-sm font-light mb-3 md:mb-4 transition-colors duration-300 ${
               isDark ? "text-white/70" : "text-black/70"
             }`}
           >
             socials
           </h3>
-          <div className="flex space-x-3">
+          <div className="flex flex-wrap gap-2 md:space-x-3 md:gap-0">
             {socials.map(({ icon: Icon, label, href }, idx) => (
               <a
                 key={label}
@@ -81,7 +81,7 @@ export function AboutMeCard({ isDark }: { isDark: boolean }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className={`w-12 h-8 rounded border transition-colors duration-300 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2
+                className={`w-10 h-8 md:w-12 rounded border transition-colors duration-300 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2
                   ${isDark ? "border-white/20 focus:ring-white/40 hover:bg-white/10 hover:text-black" : "border-black/20 focus:ring-black/40 hover:bg-black/10 hover:text-white"}
                 `}
               >

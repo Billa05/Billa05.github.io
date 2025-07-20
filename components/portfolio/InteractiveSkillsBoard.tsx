@@ -62,10 +62,10 @@ const InteractiveSkillsBoard: React.FC<InteractiveSkillsBoardProps> = ({ initial
   }, []);
 
   return (
-    <Card className="relative bg-transparent border-0 shadow-none h-[320px] md:h-full w-full p-0 overflow-x-auto">
+    <Card className="relative bg-transparent border-0 shadow-none h-[320px] md:h-full w-full p-0 overflow-hidden">
       <div
         ref={containerRef}
-        className="relative w-[900px] md:w-full h-full min-h-[320px] md:min-h-0 overflow-visible touch-pan-x"
+        className="relative w-full h-full min-h-[320px] md:min-h-0 overflow-visible"
         style={{ height: "100%" }} // Ensure it fills the parent
       >
         {skills.map((skill) => (

@@ -48,7 +48,7 @@ export function ProjectsCard({ isDark }: { isDark: boolean }) {
   ];
   return (
     <Card
-      className={`h-full flex flex-col justify-center rounded-br-3xl border-2 border-t-0 border-l-0 transition-colors duration-300 overflow-hidden ${
+      className={`h-[400px] md:h-full flex flex-col justify-center rounded-br-3xl border-2 border-t-0 border-l-0 transition-colors duration-300 overflow-hidden ${
         isDark ? "bg-black/70 border-white/20" : "bg-white/50 border-black/20"
       }`}
     >
@@ -59,8 +59,8 @@ export function ProjectsCard({ isDark }: { isDark: boolean }) {
           Projects
         </CardTitle>
       </CardHeader>
-      <CardContent className="flex flex-1 flex-col justify-center items-center w-full h-full max-h-full overflow-hidden p-1 md:p-0">
-        <div className="w-full max-w-full md:max-w-[90%] h-full overflow-x-auto md:overflow-hidden flex items-center justify-center">
+      <CardContent className="flex flex-1 flex-col items-center justify-center w-full h-full max-h-full overflow-hidden p-1 md:p-0">
+        <div className="flex items-center justify-center w-full h-full">
           <ThreeDPhotoCarousel projects={projects} isDark={isDark} />
         </div>
       </CardContent>

@@ -19,7 +19,7 @@ export function SkillsCard({ isDark }: { isDark: boolean }) {
           Skills
         </CardTitle>
       </CardHeader>
-      <CardContent className="flex-1 h-full p-1 md:p-0"> {/* Responsive padding for CardContent */}
+      <CardContent className="p-1 md:p-0 md:h-full"> {/* Responsive padding for CardContent */}
         <InteractiveSkillsBoard isDark={isDark} badgeClass={badgeClass} />
       </CardContent>
     </Card>

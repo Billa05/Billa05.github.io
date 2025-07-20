@@ -42,7 +42,7 @@ const Carousel = memo(
     isDark: boolean
   }) => {
     const isScreenSizeSm = useMediaQuery("(max-width: 640px)")
-    const cylinderWidth = isScreenSizeSm ? 320 : 1300
+    const cylinderWidth = isScreenSizeSm ? 800 : 1300
     const faceCount = projects.length
     const faceWidth = cylinderWidth / faceCount
     const radius = cylinderWidth / (2 * Math.PI)
@@ -54,7 +54,7 @@ const Carousel = memo(
 
     return (
       <div
-        className="flex h-full items-center justify-center bg-transparent overflow-x-auto md:overflow-x-visible"
+        className="flex h-full items-center justify-center bg-transparent overflow-hidden"
         style={{
           perspective: "1000px",
           transformStyle: "preserve-3d",
@@ -141,7 +141,7 @@ function ThreeDPhotoCarousel({ projects, isDark }: { projects: { name: string; s
   const controls = useAnimation()
   return (
     <motion.div layout className="relative">
-      <div className="relative h-[180px] md:h-[300px] w-full overflow-x-auto md:overflow-x-visible">
+      <div className="relative h-[500px] md:h-[300px] w-full overflow-hidden">
         <Carousel
           controls={controls}
           projects={projects}

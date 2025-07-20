@@ -23,7 +23,7 @@ export function ProjectsCard({ isDark }: { isDark: boolean }) {
     },
     {
       name: "LabelInsight",
-      stack: "FastAPI, RAG, LangChain, Groq, React, Python, MongoDB",
+      stack: "FastAPI, RAG, LangChain, React, Python, MongoDB",
       github: "https://github.com/biresh-labelinsight",
       bullets: [
         "Built a barcode scanner app that checks claims vs. actual nutrition using RAG and LangChain",

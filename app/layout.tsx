@@ -5,9 +5,8 @@ import { Component } from "@/components/ui/etheral-shadow"
 
 
 export const metadata: Metadata = {
-  title: 'v0 App',
-  description: 'Created with v0',
-  generator: 'v0.dev',
+  title: "Billa's portfolio",
+  description: 'portfolio of biresh biswas',
 }
 
 export default function RootLayout({

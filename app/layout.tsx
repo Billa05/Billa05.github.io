@@ -21,7 +21,7 @@ export default function RootLayout({
         <div className="fixed inset-0 -z-10 w-full h-full">
         <Component
       color="rgb(0, 0, 0)"
-        animation={{ scale: 100, speed: 90 }}
+        animation={{ scale: 100, speed: 95 }}
         noise={{ opacity: 1, scale: 0.5 }}
         sizing="fill"
          />

@@ -1,6 +1,7 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { useIsMobile } from "@/hooks/use-mobile"
 import { WorkExperienceCard } from "@/components/portfolio/WorkExperienceCard"
 import { AboutMeCard } from "@/components/portfolio/AboutMeCard"
 import { SkillsCard } from "@/components/portfolio/SkillsCard"
@@ -8,7 +9,12 @@ import { ProjectsCard } from "@/components/portfolio/ProjectsCard"
 import { ThemeToggleButton } from "@/components/portfolio/ThemeToggleButton"
 
 export default function PortfolioLayout() {
+  const isMobile = useIsMobile()
   const [isDark, setIsDark] = useState(true)
+
+  useEffect(() => {
+    setIsDark(!isMobile)
+  }, [isMobile])
 
   const toggleTheme = () => {
     setIsDark(!isDark)

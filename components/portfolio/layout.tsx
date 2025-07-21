@@ -17,7 +17,9 @@ export default function PortfolioLayout() {
   }, [isMobile])
 
   const toggleTheme = () => {
-    setIsDark(!isDark)
+    const switchTheme = () => setIsDark((prev) => !prev);
+    if (!document.startViewTransition) return switchTheme();
+    document.startViewTransition(switchTheme);
   }
 
   return (

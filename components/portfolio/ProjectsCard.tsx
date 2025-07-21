@@ -1,7 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ThreeDPhotoCarousel } from "@/components/ui/3d-carousel";
-import { Badge } from "../ui/badge";
-import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card";
 
 export function ProjectsCard({ isDark }: { isDark: boolean }) {
   const projects = [

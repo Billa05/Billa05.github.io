@@ -1,8 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
-import { Pointer } from '@/components/cursor'
+import InvertedCursor from '@/components/cursor'
 import { Component } from "@/components/ui/etheral-shadow"
-
 
 export const metadata: Metadata = {
   title: "Billa's portfolio",
@@ -25,9 +24,8 @@ export default function RootLayout({
         sizing="fill"
          />
         </div>
-        <Pointer>
-          {children}
-        </Pointer>
+        <InvertedCursor />
+        {children}
       </body>
     </html>
   )

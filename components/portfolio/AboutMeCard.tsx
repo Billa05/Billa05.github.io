@@ -67,7 +67,7 @@ export function AboutMeCard({ isDark }: { isDark: boolean }) {
         {/* Socials */}
         <div>
           <h3
-            className={`text-xs md:text-sm font-light mb-3 md:mb-4 transition-colors duration-300 ${
+            className={`text-xs md:text-sm font-light mb-3 md:mb-1 transition-colors duration-300 ${
               isDark ? "text-white/70" : "text-black/70"
             }`}
           >

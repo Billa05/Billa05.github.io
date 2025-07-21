@@ -42,7 +42,7 @@ const Carousel = memo(
     isDark: boolean
   }) => {
     const isScreenSizeSm = useMediaQuery("(max-width: 640px)")
-    const cylinderWidth = isScreenSizeSm ? 800 : 1300
+    const cylinderWidth = isScreenSizeSm ? 850 : 1300
     const faceCount = projects.length
     const faceWidth = cylinderWidth / faceCount
     const radius = cylinderWidth / (2 * Math.PI)
@@ -99,7 +99,7 @@ const Carousel = memo(
                 transform: `rotateY(${i * (360 / faceCount)}deg) translateZ(${radius}px)`,
               }}
             >
-              <Card className={`w-full max-w-[180px] md:max-w-[260px] flex flex-col justify-between overflow-hidden border rounded-xl ${isDark ? "border-black/20 bg-white/60" : "border-white/30 bg-black/40"}`}>
+              <Card className={`w-full max-w-[180px] md:max-w-[260px] h-[220px] md:h-[228px] flex flex-col justify-between overflow-hidden border rounded-xl ${isDark ? "border-black/20 bg-white/90" : "border-white/30 bg-black/80"}`}>
                 <CardHeader className="p-2 md:p-4 pb-1 md:pb-2">
                   <CardTitle
                     className={`text-base md:text-lg font-semibold truncate transition-colors ${isDark ? "text-black hover:text-blue-600" : "text-white hover:text-blue-400"}`}

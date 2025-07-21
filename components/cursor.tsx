@@ -1,10 +1,22 @@
 'use client'
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 const InvertedCursor: React.FC = () => {
   const cursorRef = useRef<HTMLDivElement>(null);
+  const [isDesktop, setIsDesktop] = useState(true);
 
   useEffect(() => {
+    const checkDesktop = () => setIsDesktop(window.matchMedia('(min-width: 641px)').matches);
+    checkDesktop();
+    window.addEventListener('resize', checkDesktop);
+    return () => window.removeEventListener('resize', checkDesktop);
+  }, []);
+
+  useEffect(() => {
+    if (!isDesktop) {
+      document.body.style.cursor = '';
+      return;
+    }
     const moveCursor = (e: MouseEvent) => {
       if (cursorRef.current) {
         cursorRef.current.style.setProperty('--x', `${e.clientX + window.scrollX}px`);
@@ -17,7 +29,9 @@ const InvertedCursor: React.FC = () => {
       document.body.style.cursor = '';
       window.removeEventListener('mousemove', moveCursor);
     };
-  }, []);
+  }, [isDesktop]);
+
+  if (!isDesktop) return null;
 
   return (
     <div

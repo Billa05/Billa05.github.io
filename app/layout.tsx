@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <div className="fixed inset-0 -z-10 w-full">
+        <div className="fixed inset-0 -z-10 h-full min-h-screen">
           <Component
             color="rgb(0, 0, 0)"
             animation={{ scale: 100, speed: 95 }}

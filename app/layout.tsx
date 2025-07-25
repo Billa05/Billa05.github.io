@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <div className="fixed inset-0 -z-10 w-full" style={{ height: 'calc(var(--vh, 1vh) * 100)' }}>
+        <div className="fixed inset-0 -z-10 w-full">
           <Component
             color="rgb(0, 0, 0)"
             animation={{ scale: 100, speed: 95 }}

@@ -27,8 +27,8 @@ export default function PortfolioLayout() {
       <div className="h-full w-full relative p-2 sm:p-3 md:p-6 lg:p-8 box-border">
         {/* Main Container: Stack on mobile, grid on md+ */}
         <div className="flex flex-col gap-3 w-full md:grid md:grid-cols-2 md:grid-rows-2 md:gap-2 md:h-full">
-          <div className="w-full overflow-auto rounded-2xl md:h-full"><WorkExperienceCard isDark={isDark} /></div>
           <div className="w-full overflow-auto rounded-2xl md:h-full"><AboutMeCard isDark={isDark} /></div>
+          <div className="w-full overflow-auto rounded-2xl md:h-full"><WorkExperienceCard isDark={isDark} /></div>
           <div className="w-full overflow-auto rounded-2xl md:h-full"><SkillsCard isDark={isDark} /></div>
           <div className="w-full overflow-auto rounded-2xl md:h-full"><ProjectsCard isDark={isDark} /></div>
         </div>

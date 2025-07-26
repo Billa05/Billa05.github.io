@@ -6,7 +6,7 @@ export function ProjectsCard({ isDark }: { isDark: boolean }) {
     {
       name: "HAVEN",
       stack: "Next.js, NextAuth, Shadcn UI, Tailwind, PostgreSQL, Python",
-      github: "https://github.com/biresh-haven",
+      github: "https://github.com/Billa05/Haven",
       bullets: [
         "Created an incident-tracking app with emoji-map UI and community upvoting",
       ],
@@ -14,7 +14,7 @@ export function ProjectsCard({ isDark }: { isDark: boolean }) {
     {
       name: "FintechApp",
       stack: "React, Node.js, Tailwind, Hasura, GraphQL, MongoDB",
-      github: "https://github.com/biresh-fintechapp",
+      github: "https://github.com/Billa05/FintechApp",
       bullets: [
         "Developed a fintech app for secure transfers, deposits, and account management",
       ],
@@ -22,27 +22,28 @@ export function ProjectsCard({ isDark }: { isDark: boolean }) {
     {
       name: "LabelInsight",
       stack: "FastAPI, RAG, LangChain, React, Python, MongoDB",
-      github: "https://github.com/biresh-labelinsight",
+      github: "https://github.com/Billa05/LabelInsight",
       bullets: [
         "Built a barcode scanner app that checks claims vs. actual nutrition using RAG and LangChain",
       ],
     },
     {
-      name: "LabelInsight",
-      stack: "FastAPI, RAG, LangChain, Groq, React, Python, MongoDB",
-      github: "https://github.com/biresh-labelinsight",
+      name: "Nexus",
+      stack: "Next.js, Solidity, Hardhat, Ethers.js, IPFS, Docker, Three.js, GSAP",
+      github: "https://github.com/Billa05/nexus",
       bullets: [
-        "Built a barcode scanner app that checks claims vs. actual nutrition using RAG and LangChain",
+        "Built a decentralized research platform with NFT-based contribution tracking and IPFS storage",
       ],
     },
     {
-      name: "LabelInsight",
-      stack: "FastAPI, RAG, LangChain, Groq, React, Python, MongoDB",
-      github: "https://github.com/biresh-labelinsight",
+      name: "PrusaSlicer CLI Docker Workflow",
+      stack: "Docker, Bash, Python, PrusaSlicer CLI, G-code, GCP",
+      github: "https://github.com/Billa05/prusaslicer-cli-docker",
       bullets: [
-        "Built a barcode scanner app that checks claims vs. actual nutrition using RAG and LangChain",
+        "Streamlined 3D model slicing using PrusaSlicer CLI in a fully containerized Docker workflow",
       ],
     },
+    
   ];
   return (
     <Card

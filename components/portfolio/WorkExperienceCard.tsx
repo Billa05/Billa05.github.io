@@ -6,16 +6,16 @@ import { FileText, BookOpen } from "lucide-react";
 export function WorkExperienceCard({ isDark }: { isDark: boolean }) {
   const experiences = [
     {
+      company: "Samsung R&D Institute India - Bangalore",
+      role: "Samsung PRISM Intern",
+    },
+    {
       company: "Quetzalcoatl Pvt Ltd",
       role: "Full Stack Developer",
     },
     {
       company: "L&T Energy Hydrocarbon",
       role: "IT Intern",
-    },
-    {
-      company: "Open Library",
-      role: "OSS Contributor",
     },
   ];
 

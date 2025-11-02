@@ -4,9 +4,9 @@ import { Badge } from "@/components/ui/badge";
 
 export function AboutMeCard({ isDark }: { isDark: boolean }) {
   const bioPoints = [
-    "I'm Biresh Biswas, a 20-year-old B.Tech student at VIT Chennai with a passion for building systems that create real-world impact.",
-    "I’m a tech enthusiast who loves building meaningful projects — from full-stack apps to blockchain-based platforms that solve real-world problems.",
-    "Skilled in web development, cloud tools, and AI automation, I enjoy working across the stack — whether it's backend logic, Docker setups, or smart integrations.",
+    "I'm Biresh Biswas, a 20 year old B.Tech student at VIT Chennai with a passion for building systems that create real world impact.",
+    "I’m a tech enthusiast who loves building meaningful projects from full-stack apps to blockchain based platforms that solve real world problems.",
+    "Skilled in web development, cloud tools, and AI automation, I enjoy working across the stack whether it's backend logic, Docker setups, or smart integrations.",
     "Quietly ambitious, I value thoughtful execution, continuous learning, and using technology to make a difference in people’s lives."
   ];  
 

@@ -25,19 +25,19 @@ export function WorkExperienceCard({ isDark }: { isDark: boolean }) {
 
   return (
     <Card
-      className={`h-full rounded-tl-3xl border-2 transition-colors duration-300 ${
+      className={`h-full flex flex-col overflow-hidden rounded-tl-3xl border-2 transition-colors duration-300 ${
         isDark ? "bg-black/70 border-white/20" : "bg-white/50 border-black/20"
       }`}
     >
-      <CardHeader>
+      <CardHeader className="flex-shrink-0">
         <CardTitle
           className={`text-xl font-light transition-colors duration-300 ${isDark ? "text-white" : "text-black"}`}
         >
           Work Experiences
         </CardTitle>
       </CardHeader>
-      <CardContent>
-        <div className="flex flex-col md:flex-row gap-6 items-stretch">
+      <CardContent className="flex-1 min-h-0 overflow-hidden">
+        <div className="flex flex-col md:flex-row gap-6 items-stretch h-full">
           {/* Left: Timeline (1/3) */}
           <div className="w-full md:w-1/3 min-w-[120px] flex flex-col justify-center mb-6 md:mb-0">
             <div className="relative ml-2 md:ml-4 pl-2 md:pl-4 border-l transition-colors duration-300" style={{ borderColor: isDark ? "rgba(255,255,255,0.2)" : "rgba(0,0,0,0.2)" }}>
@@ -65,16 +65,16 @@ export function WorkExperienceCard({ isDark }: { isDark: boolean }) {
             </div>
           </div>
           {/* Right: GitHub Contribution Graph (2/3) */}
-          <div className="w-full md:w-2/3 flex flex-col items-center justify-center">
-            <span className={`mb-2 text-xs md:text-sm font-semibold tracking-wide uppercase ${isDark ? "text-white/80" : "text-black/80"}`}>GitHub Contributions</span>
-            <div className="w-full overflow-x-auto">
+          <div className="w-full md:w-2/3 flex flex-col items-center justify-center min-h-0">
+            <span className={`mb-2 text-xs md:text-sm font-semibold tracking-wide uppercase flex-shrink-0 ${isDark ? "text-white/80" : "text-black/80"}`}>GitHub Contributions</span>
+            <div className="w-full overflow-x-auto overflow-y-hidden min-h-0 flex items-center">
               <GitHubCalendar
                 username="billa05"
                 colorScheme={isDark ? "dark" : "light"}
                 blockSize={10}
                 blockMargin={3}
                 fontSize={10}
-                style={{ width: "100%", minHeight: 120, minWidth: 320 }}
+                style={{ width: "100%", minWidth: 320 }}
                 theme={isDark ? {
                   light: ["#222", "#444", "#666", "#888", "#fff"],
                   dark: ["#fff", "#bbb", "#888", "#444", "#222"],
@@ -88,7 +88,7 @@ export function WorkExperienceCard({ isDark }: { isDark: boolean }) {
         </div>
       </CardContent>
       {/* Action Buttons at the bottom */}
-      <div className="flex flex-col md:flex-row justify-end gap-3 px-3 md:px-6 pb-4 md:pb-6 mt-6 md:mt-10 w-full">
+      <div className="flex flex-col md:flex-row justify-end gap-3 px-3 md:px-6 pb-4 md:pb-6 mt-auto pt-3 w-full flex-shrink-0">
         <Button
           variant="ghost"
           className={`transition-colors duration-300 px-4 py-2 rounded-md border backdrop-blur-md w-full md:w-auto

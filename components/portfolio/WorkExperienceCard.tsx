@@ -14,10 +14,6 @@ export function WorkExperienceCard({ isDark }: { isDark: boolean }) {
       role: "Samsung PRISM Intern",
     },
     {
-      company: "Quetzalcoatl Pvt Ltd",
-      role: "Full Stack Developer",
-    },
-    {
       company: "L&T Energy Hydrocarbon",
       role: "IT Intern",
     },

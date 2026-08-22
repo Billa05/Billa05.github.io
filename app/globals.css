@@ -11,7 +11,7 @@ body {
 }
 
 #invertedcursor {
-  position: absolute;
+  position: fixed;
   width: 14px;
   height: 14px;
   background: #fff;

@@ -19,8 +19,11 @@ const InvertedCursor: React.FC = () => {
     }
     const moveCursor = (e: MouseEvent) => {
       if (cursorRef.current) {
-        cursorRef.current.style.setProperty('--x', `${e.clientX + window.scrollX}px`);
-        cursorRef.current.style.setProperty('--y', `${e.clientY + window.scrollY}px`);
+        const cursorRadius = 7;
+        const x = Math.min(Math.max(e.clientX, cursorRadius), window.innerWidth - cursorRadius);
+        const y = Math.min(Math.max(e.clientY, cursorRadius), window.innerHeight - cursorRadius);
+        cursorRef.current.style.setProperty('--x', `${x}px`);
+        cursorRef.current.style.setProperty('--y', `${y}px`);
       }
     };
     document.body.style.cursor = 'none';
@@ -38,7 +41,7 @@ const InvertedCursor: React.FC = () => {
       ref={cursorRef}
       id="invertedcursor"
       style={{
-        position: 'absolute',
+        position: 'fixed',
         width: '14px',
         height: '14px',
         background: '#fff',

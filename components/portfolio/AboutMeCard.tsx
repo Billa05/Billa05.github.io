@@ -24,17 +24,17 @@ export function AboutMeCard() {
           Biresh Biswas
         </h1>
         <p className="mt-3 max-w-2xl text-base font-normal leading-snug tracking-[-0.02em] text-black/65 dark:text-white/65 sm:text-lg lg:text-xl">
-          I like building software where correctness actually matters.
+          I&apos;m interested in the whole game, not just the code.
         </p>
       </CardHeader>
 
       <CardContent className="relative flex flex-1 flex-col justify-between px-5 pb-5 pt-3 sm:px-6 sm:pb-6 lg:px-7 lg:pb-7">
         <div className="grid max-w-3xl gap-3 text-[13px] leading-relaxed text-black/68 dark:text-white/68 sm:grid-cols-2 sm:gap-8 sm:text-sm">
           <p>
-            I&apos;m drawn to problems that sit between systems, people, and money. Lately that has meant Rust services for Bitcoin and Lightning, dependable protocol boundaries, and AI tools that turn messy intent into something deterministic.
+            I&apos;m an engineer, but mostly a curious nerd. I can spend hours pulling apart a system, protocol, market, or new technology just to understand what makes it tick.
           </p>
           <p>
-            I care about the unglamorous parts too: clear interfaces, failure recovery, tests that earn trust, and documentation that helps the next person move faster. I&apos;m happiest taking a vague idea all the way to something people can use.
+            What keeps me interested is the whole game: product, distribution, incentives, business models, and money. Good engineering matters, but so does knowing what to build, why it should exist, and how it earns its place in the real world.
           </p>
         </div>
 

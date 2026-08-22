@@ -1,6 +1,7 @@
-import { ArrowUpRight, FileText, Mail } from "lucide-react"
+import { ArrowUpRight, BookOpen, FileText } from "lucide-react"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { LazyGitHubCalendar } from "@/components/portfolio/LazyGitHubCalendar"
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 
 const experiences = [
   {
@@ -76,12 +77,25 @@ export function WorkExperienceCard() {
           <FileText className="h-3.5 w-3.5" /> Resume
           <ArrowUpRight className="h-3 w-3 opacity-40 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         </a>
-        <a
-          href="mailto:contactbiresh@gmail.com"
-          className="flex h-9 items-center gap-2 rounded-full border border-black/12 px-3.5 font-mono text-[10px] uppercase tracking-[0.08em] text-black/70 transition-all duration-300 hover:border-black/30 hover:bg-black hover:text-white dark:border-white/12 dark:text-white/70 dark:hover:border-white/30 dark:hover:bg-white dark:hover:text-black"
-        >
-          <Mail className="h-3.5 w-3.5" /> Email
-        </a>
+        <TooltipProvider delayDuration={150}>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <button
+                type="button"
+                aria-label="Blog, coming soon"
+                className="flex h-9 cursor-default items-center gap-2 rounded-full border border-black/12 px-3.5 font-mono text-[10px] uppercase tracking-[0.08em] text-black/70 transition-all duration-300 hover:border-black/30 hover:bg-black hover:text-white dark:border-white/12 dark:text-white/70 dark:hover:border-white/30 dark:hover:bg-white dark:hover:text-black"
+              >
+                <BookOpen className="h-3.5 w-3.5" /> Blog
+              </button>
+            </TooltipTrigger>
+            <TooltipContent
+              side="top"
+              className="rounded-full border-black/10 bg-black px-3 py-1 font-mono text-[9px] uppercase tracking-[0.1em] text-white dark:border-white/10 dark:bg-white dark:text-black"
+            >
+              Coming soon
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
       </div>
     </Card>
   )

@@ -17,36 +17,31 @@ export function AboutMeCard() {
         <div className="mb-5 flex items-center gap-3 text-black/50 dark:text-white/50">
           <span className="section-index">01 / Profile</span>
           <span className="hairline h-px w-10" />
-          <span className="font-mono text-[10px] uppercase tracking-[0.14em]">Chennai · India</span>
+          <span className="font-mono text-[10px] uppercase tracking-[0.14em]">India</span>
         </div>
 
         <h1 className="max-w-2xl text-[clamp(2rem,3.2vw,3.75rem)] font-medium leading-[0.94] tracking-[-0.055em]">
           Biresh Biswas
         </h1>
         <p className="mt-3 max-w-2xl text-base font-normal leading-snug tracking-[-0.02em] text-black/65 dark:text-white/65 sm:text-lg lg:text-xl">
-          Software engineer designing and shipping production systems.
+          I like building software where correctness actually matters.
         </p>
       </CardHeader>
 
       <CardContent className="relative flex flex-1 flex-col justify-between px-5 pb-5 pt-3 sm:px-6 sm:pb-6 lg:px-7 lg:pb-7">
         <div className="grid max-w-3xl gap-3 text-[13px] leading-relaxed text-black/68 dark:text-white/68 sm:grid-cols-2 sm:gap-8 sm:text-sm">
           <p>
-            I work on distributed infrastructure, AI, and blockchain systems, from architecture and protocol design through implementation and deployment.
+            I&apos;m drawn to problems that sit between systems, people, and money. Lately that has meant Rust services for Bitcoin and Lightning, dependable protocol boundaries, and AI tools that turn messy intent into something deterministic.
           </p>
           <p>
-            I turn ambiguous requirements into maintainable platforms and developer tooling, with an emphasis on testing, operational reliability, and measurable outcomes.
+            I care about the unglamorous parts too: clear interfaces, failure recovery, tests that earn trust, and documentation that helps the next person move faster. I&apos;m happiest taking a vague idea all the way to something people can use.
           </p>
         </div>
 
         <div className="mt-6 flex flex-col gap-4 border-t border-black/10 pt-4 dark:border-white/10 sm:flex-row sm:items-end sm:justify-between">
-          <div className="max-w-md font-mono text-[10px] uppercase leading-relaxed tracking-[0.1em] text-black/45 dark:text-white/45 sm:max-w-[380px]">
-            <p className="mb-0.5">B.Tech CSE · VIT Chennai · 2027</p>
-            <address className="flex flex-wrap items-center gap-x-1.5 not-italic">
-              <a href="tel:+917058844518" className="whitespace-nowrap transition-colors hover:text-black dark:hover:text-white">+91 70588 44518</a>
-              <span>·</span>
-              <a href="mailto:contactbiresh@gmail.com" className="whitespace-nowrap transition-colors hover:text-black dark:hover:text-white">contactbiresh@gmail.com</a>
-            </address>
-          </div>
+          <p className="max-w-md font-mono text-[10px] uppercase leading-relaxed tracking-[0.1em] text-black/45 dark:text-white/45 sm:max-w-[340px]">
+            Current rabbit holes · Bitcoin and Lightning · Distributed systems · Developer tools
+          </p>
           <nav aria-label="Social links" className="flex flex-wrap gap-2 sm:flex-nowrap">
             {socials.map(({ icon: Icon, label, href }) => (
               <a

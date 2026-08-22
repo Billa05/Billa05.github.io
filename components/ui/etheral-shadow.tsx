@@ -171,6 +171,7 @@ export function Component({
             </div>
 
             <div
+                className="portfolio-signature"
                 style={{
                     position: "absolute",
                     top: "50%",
@@ -178,8 +179,8 @@ export function Component({
                     transform: "translate(-50%, -50%)",
                     textAlign: "center",
                     zIndex: 10,
-                    width: "min(64vw, 840px)",
-                    opacity: 0.13
+                    width: "min(74vw, 1040px)",
+                    opacity: 0.52
                 }}
             >
                 <img

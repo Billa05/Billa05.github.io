@@ -36,11 +36,11 @@ export function ProjectsCard() {
       ],
     },
     {
-      name: "HAVEN",
-      stack: "Next.js, NextAuth, Tailwind, PostgreSQL, Python",
-      github: "https://github.com/Billa05/Haven",
+      name: "Stable Channels",
+      stack: "Rust, LDK Node, Bitcoin, Lightning, Multi-platform",
+      github: "https://github.com/Billa05/stable-channels",
       bullets: [
-        "An incident-tracking platform with a map-based interface and community upvoting for safer urban living.",
+        "A self-custodial wallet that keeps a portion of users’ bitcoin at a stable dollar value using overcollateralized Lightning channels.",
       ],
     },
   ];

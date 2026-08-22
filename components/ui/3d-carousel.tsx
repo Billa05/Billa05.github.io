@@ -51,7 +51,6 @@ function ThreeDPhotoCarousel({ projects, isDark }: { projects: Project[]; isDark
                   scale: isActive ? 1 : distance === 1 ? 0.84 : 0.7,
                   rotateY: offset * -16,
                   opacity: isActive ? 1 : distance === 1 ? 0.36 : 0,
-                  filter: isActive ? "blur(0px)" : "blur(1.5px)",
                 }}
                 transition={{ type: "spring", stiffness: 230, damping: 28, mass: 0.8 }}
                 drag={isActive ? "x" : false}

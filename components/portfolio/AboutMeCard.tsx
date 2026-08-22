@@ -40,7 +40,7 @@ export function AboutMeCard() {
 
         <div className="mt-6 flex flex-col gap-4 border-t border-black/10 pt-4 dark:border-white/10 sm:flex-row sm:items-end sm:justify-between">
           <p className="max-w-md font-mono text-[10px] uppercase leading-relaxed tracking-[0.1em] text-black/45 dark:text-white/45 sm:max-w-[340px]">
-            Current rabbit holes · Bitcoin and Lightning · Distributed systems · Developer tools
+            Current rabbit holes · Bitcoin and Lightning · Web3 and DeFi · Distributed systems · Developer tools
           </p>
           <nav aria-label="Social links" className="flex flex-wrap gap-2 sm:flex-nowrap">
             {socials.map(({ icon: Icon, label, href }) => (

@@ -1,7 +1,7 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ThreeDPhotoCarousel } from "@/components/ui/3d-carousel";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { LazyProjectsCarousel } from "@/components/portfolio/LazyProjectsCarousel";
 
-export function ProjectsCard({ isDark }: { isDark: boolean }) {
+export function ProjectsCard() {
   const projects = [
     {
       name: "HAVEN",
@@ -47,22 +47,21 @@ export function ProjectsCard({ isDark }: { isDark: boolean }) {
   ];
   return (
     <Card
-      className={`h-[400px] md:h-full flex flex-col justify-center rounded-br-3xl border-2 border-t-0 border-l-0 transition-colors duration-300 overflow-hidden ${
-        isDark ? "bg-black/70 border-white/20" : "bg-white/50 border-black/20"
-      }`}
+      className="portfolio-panel flex h-[440px] flex-col overflow-hidden rounded-[24px] border-0 text-black transition-colors duration-500 dark:text-white md:h-full"
     >
-      <CardHeader className="w-full px-3 py-2 md:px-6 md:py-4">
-        <CardTitle
-          className={`text-lg md:text-xl font-light text-left transition-colors duration-300 ${isDark ? "text-white" : "text-black"}`}
-        >
-          Projects
-        </CardTitle>
+      <CardHeader className="w-full space-y-0 px-5 pb-1 pt-5 sm:px-6 sm:pt-6 lg:px-7 lg:pt-7">
+        <div className="mb-3 flex items-center gap-3 text-black/50 dark:text-white/50">
+          <span className="section-index">03 / Selected work</span>
+          <span className="hairline h-px w-10" />
+          <span className="font-mono text-[9px] uppercase tracking-[0.12em]">05 projects</span>
+        </div>
+        <h2 className="text-2xl font-medium tracking-[-0.04em] sm:text-[1.75rem]">Things I&apos;ve built</h2>
       </CardHeader>
-      <CardContent className="flex flex-1 flex-col items-center justify-center w-full h-full max-h-full overflow-hidden p-1 md:p-0">
+      <CardContent className="flex min-h-0 w-full flex-1 flex-col items-center justify-center overflow-hidden p-0">
         <div className="flex items-center justify-center w-full h-full">
-          <ThreeDPhotoCarousel projects={projects} isDark={isDark} />
+          <LazyProjectsCarousel projects={projects} />
         </div>
       </CardContent>
     </Card>
   );
-} 
+}

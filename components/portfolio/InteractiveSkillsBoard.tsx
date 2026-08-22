@@ -1,12 +1,10 @@
 "use client"
 import React, { useState, useRef, useCallback } from "react";
 import DraggableSkillBadge, { Skill } from "./DraggableSkillBadge";
-import { Card } from "@/components/ui/card";
+import { usePortfolioTheme } from "./ThemeShell";
 
 interface InteractiveSkillsBoardProps {
   initialSkills?: Skill[];
-  isDark?: boolean;
-  badgeClass?: string;
 }
 
 const defaultSkills: Skill[] = [
@@ -46,9 +44,10 @@ const defaultSkills: Skill[] = [
   { id: "36", name: "Hardhat", position: { x: 657, y: 240.5 }, color: "outline" },
 ];
 
-const InteractiveSkillsBoard: React.FC<InteractiveSkillsBoardProps> = ({ initialSkills = defaultSkills, isDark = false, badgeClass = "" }) => {
+const InteractiveSkillsBoard: React.FC<InteractiveSkillsBoardProps> = ({ initialSkills = defaultSkills }) => {
   const [skills, setSkills] = useState<Skill[]>(initialSkills);
   const containerRef = useRef<HTMLDivElement>(null) as React.RefObject<HTMLDivElement>;
+  const { isDark } = usePortfolioTheme();
 
   const handlePositionChange = useCallback((id: string, position: { x: number; y: number }) => {
     setSkills((prev) => {
@@ -57,16 +56,22 @@ const InteractiveSkillsBoard: React.FC<InteractiveSkillsBoardProps> = ({ initial
     });
   }, []);
 
-  const handleRemoveSkill = useCallback((id: string) => {
-    setSkills((prev) => prev.filter((skill) => skill.id !== id));
-  }, []);
-
   return (
-    <Card className="relative bg-transparent border-0 shadow-none h-[320px] md:h-full w-full p-0 overflow-hidden">
+    <div className="relative w-full md:h-full">
+      <div className="flex flex-wrap gap-2 px-2 pb-3 pt-4 md:hidden">
+        {skills.map((skill, index) => (
+          <span
+            key={skill.id}
+            className="rounded-full border border-black/12 bg-black/[0.025] px-3 py-2 font-mono text-[10px] tracking-[-0.01em] text-black/68 dark:border-white/12 dark:bg-white/[0.04] dark:text-white/68"
+          >
+            <span className="mr-1.5 text-black/30 dark:text-white/30">{String(index + 1).padStart(2, "0")}</span>
+            {skill.name}
+          </span>
+        ))}
+      </div>
       <div
         ref={containerRef}
-        className="relative w-full h-full min-h-[320px] md:min-h-0 overflow-visible"
-        style={{ height: "100%" }} // Ensure it fills the parent
+        className="relative hidden h-full min-h-0 w-full overflow-visible md:block"
       >
         {skills.map((skill) => (
           <DraggableSkillBadge
@@ -75,12 +80,11 @@ const InteractiveSkillsBoard: React.FC<InteractiveSkillsBoardProps> = ({ initial
             onPositionChange={handlePositionChange}
             containerRef={containerRef}
             isDark={isDark}
-            badgeClass={badgeClass}
           />
         ))}
       </div>
-    </Card>
+    </div>
   );
 };
 
-export default InteractiveSkillsBoard; 
+export default InteractiveSkillsBoard;

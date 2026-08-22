@@ -4,13 +4,15 @@ export function ThemeToggleButton({ isDark, toggleTheme }: { isDark: boolean; to
   return (
     <button
       onClick={toggleTheme}
-      className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full border-4 transition-all duration-300 z-10 flex items-center justify-center ${
+      type="button"
+      aria-label={`Switch to ${isDark ? "light" : "dark"} theme`}
+      className={`group flex h-11 w-11 items-center justify-center rounded-full border backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${
         isDark
-          ? "bg-white border-black text-black hover:scale-110"
-          : "bg-black border-white text-white hover:scale-110"
+          ? "border-white/20 bg-white/95 text-black shadow-[0_8px_30px_rgba(0,0,0,0.22)] focus-visible:ring-white"
+          : "border-black/15 bg-black/95 text-white shadow-[0_8px_30px_rgba(0,0,0,0.16)] focus-visible:ring-black"
       }`}
     >
-      {isDark ? <Sun className="w-6 h-6" /> : <Moon className="w-6 h-6" />}
+      {isDark ? <Sun className="h-[18px] w-[18px] transition-transform duration-500 group-hover:rotate-45" /> : <Moon className="h-[18px] w-[18px] transition-transform duration-500 group-hover:-rotate-12" />}
     </button>
   );
-} 
+}

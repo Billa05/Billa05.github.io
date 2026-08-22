@@ -39,8 +39,8 @@ const InvertedCursor: React.FC = () => {
       id="invertedcursor"
       style={{
         position: 'absolute',
-        width: '24px',
-        height: '24px',
+        width: '14px',
+        height: '14px',
         background: '#fff',
         borderRadius: '50%',
         top: 'var(--y, 0)',
@@ -49,10 +49,10 @@ const InvertedCursor: React.FC = () => {
         zIndex: 9999,
         mixBlendMode: 'difference',
         pointerEvents: 'none',
-        transition: 'transform .2s',
+        transition: 'transform 80ms ease-out',
       }}
     />
   );
 };
 
-export default InvertedCursor; 
+export default InvertedCursor;

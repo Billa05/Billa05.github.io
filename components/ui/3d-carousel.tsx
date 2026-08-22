@@ -1,156 +1,142 @@
 "use client"
 
-import { memo, useEffect, useLayoutEffect, useState } from "react"
-import {
-  motion,
-  useAnimation,
-  useMotionValue,
-  useTransform,
-  cubicBezier,
-} from "framer-motion"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { useState } from "react"
+import { motion, type PanInfo } from "framer-motion"
+import { ArrowUpRight, ChevronLeft, ChevronRight, GripHorizontal } from "lucide-react"
 
-export const useIsomorphicLayoutEffect =
-  typeof window !== "undefined" ? useLayoutEffect : useEffect
-
-function useMediaQuery(query: string, defaultValue = false): boolean {
-  const [matches, setMatches] = useState(defaultValue)
-  useIsomorphicLayoutEffect(() => {
-    const matchMedia = window.matchMedia(query)
-    const handler = () => setMatches(matchMedia.matches)
-    handler()
-    matchMedia.addEventListener("change", handler)
-    return () => matchMedia.removeEventListener("change", handler)
-  }, [query])
-  return matches
+interface Project {
+  name: string
+  stack: string
+  github: string
+  bullets: string[]
 }
 
-const duration = 0.15
-const transition = { duration, ease: cubicBezier(0.32, 0.72, 0, 1) }
+function circularOffset(index: number, activeIndex: number, length: number) {
+  let offset = index - activeIndex
+  const midpoint = Math.floor(length / 2)
 
-const Carousel = memo(
-  ({
-    controls,
-    projects,
-    isCarouselActive,
-    isDark,
-  }: {
-    controls: any
-    projects: { name: string; stack: string; github: string; bullets: string[] }[]
-    isCarouselActive: boolean
-    isDark: boolean
-  }) => {
-    const isScreenSizeSm = useMediaQuery("(max-width: 640px)")
-    const cylinderWidth = isScreenSizeSm ? 850 : 1300
-    const faceCount = projects.length
-    const faceWidth = cylinderWidth / faceCount
-    const radius = cylinderWidth / (2 * Math.PI)
-    const rotation = useMotionValue(0)
-    const transform = useTransform(
-      rotation,
-      (value) => `rotate3d(0, 1, 0, ${value}deg)`
-    )
+  if (offset > midpoint) offset -= length
+  if (offset < -midpoint) offset += length
+  return offset
+}
 
-    return (
-      <div
-        className="flex h-full items-center justify-center bg-transparent overflow-hidden"
-        style={{
-          perspective: "1000px",
-          transformStyle: "preserve-3d",
-          willChange: "transform",
-          minWidth: isScreenSizeSm ? 320 : undefined,
-        }}
-      >
-        <motion.div
-          drag={isCarouselActive ? "x" : false}
-          dragConstraints={isScreenSizeSm ? { left: -cylinderWidth / 2, right: cylinderWidth / 2 } : false}
-          className="relative flex h-full origin-center cursor-grab justify-center active:cursor-grabbing"
-          style={{
-            transform,
-            rotateY: rotation,
-            width: cylinderWidth,
-            transformStyle: "preserve-3d",
-          }}
-          onDrag={(_, info) =>
-            isCarouselActive &&
-            rotation.set(rotation.get() + info.offset.x * 0.05)
-          }
-          onDragEnd={(_, info) =>
-            isCarouselActive &&
-            controls.start({
-              rotateY: rotation.get() + info.velocity.x * 0.05,
-              transition: {
-                type: "spring",
-                stiffness: 100,
-                damping: 30,
-                mass: 0.1,
-              },
-            })
-          }
-          animate={controls}
-        >
-          {projects.map((project, i) => (
-            <motion.div
-              key={`key-${project.name}-${i}`}
-              className="absolute flex h-full origin-center items-center justify-center rounded-xl p-1 md:p-2"
-              style={{
-                width: isScreenSizeSm ? `180px` : `${faceWidth}px`,
-                transform: `rotateY(${i * (360 / faceCount)}deg) translateZ(${radius}px)`,
-              }}
-            >
-              <Card className={`w-full max-w-[180px] md:max-w-[260px] h-[220px] md:h-[228px] flex flex-col justify-between overflow-hidden border rounded-xl ${isDark ? "border-black/20 bg-white/90" : "border-white/30 bg-black/80"}`}>
-                <CardHeader className="p-2 md:p-4 pb-1 md:pb-2">
-                  <CardTitle
-                    className={`text-base md:text-lg font-semibold truncate transition-colors ${isDark ? "text-black hover:text-blue-600" : "text-white hover:text-blue-400"}`}
-                    title={project.name}
-                  >
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block w-full truncate"
-                    >
-                      {project.name}
-                    </a>
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="flex-1 p-2 md:p-4 pt-1 md:pt-2 flex flex-col justify-between">
-                  <div className="mb-1 md:mb-2 flex flex-wrap gap-1">
-                    {project.stack.split(",").map((skill, idx) => (
-                      <Badge key={idx} className={`mb-1 ${isDark ? "bg-black/10 text-black/80" : "bg-white/10 text-white/80"}`}>{skill.trim()}</Badge>
-                    ))}
-                  </div>
-                  <ul className="mb-1 md:mb-2 list-disc pl-4 text-[10px] md:text-xs space-y-1 max-h-[40px] md:max-h-[70px] overflow-y-auto">
-                    {project.bullets && project.bullets.map((bullet, idx) => (
-                      <li key={idx} className={isDark ? "text-black/80" : "text-white/80"}>{bullet}</li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
-        </motion.div>
-      </div>
-    )
+function ThreeDPhotoCarousel({ projects, isDark }: { projects: Project[]; isDark: boolean }) {
+  const [activeIndex, setActiveIndex] = useState(0)
+
+  const move = (direction: number) => {
+    setActiveIndex((current) => (current + direction + projects.length) % projects.length)
   }
-)
 
-function ThreeDPhotoCarousel({ projects, isDark }: { projects: { name: string; stack: string; github: string; bullets: string[] }[], isDark: boolean }) {
-  const [isCarouselActive, setIsCarouselActive] = useState(true)
-  const controls = useAnimation()
+  const handleDragEnd = (_: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+    if (Math.abs(info.offset.x) < 45 && Math.abs(info.velocity.x) < 350) return
+    move(info.offset.x < 0 ? 1 : -1)
+  }
+
   return (
-    <motion.div layout className="relative">
-      <div className="relative h-[500px] md:h-[300px] w-full overflow-hidden">
-        <Carousel
-          controls={controls}
-          projects={projects}
-          isCarouselActive={isCarouselActive}
-          isDark={isDark}
-        />
+    <div className="flex h-full w-full flex-col overflow-hidden px-3 pb-3 sm:px-5 sm:pb-5">
+      <div className="relative min-h-0 flex-1 [perspective:1200px]">
+        <div className="absolute inset-0 flex items-center justify-center [transform-style:preserve-3d]">
+          {projects.map((project, index) => {
+            const offset = circularOffset(index, activeIndex, projects.length)
+            const distance = Math.abs(offset)
+            const isActive = offset === 0
+            const technologies = project.stack.split(",").map((technology) => technology.trim())
+
+            return (
+              <motion.article
+                key={project.name}
+                initial={false}
+                animate={{
+                  x: `${offset * 67}%`,
+                  scale: isActive ? 1 : distance === 1 ? 0.84 : 0.7,
+                  rotateY: offset * -16,
+                  opacity: isActive ? 1 : distance === 1 ? 0.36 : 0,
+                  filter: isActive ? "blur(0px)" : "blur(1.5px)",
+                }}
+                transition={{ type: "spring", stiffness: 230, damping: 28, mass: 0.8 }}
+                drag={isActive ? "x" : false}
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.16}
+                onDragEnd={handleDragEnd}
+                onClick={() => !isActive && setActiveIndex(index)}
+                className={`absolute flex h-[245px] w-[min(76vw,330px)] flex-col overflow-hidden rounded-[22px] border p-5 sm:h-[255px] sm:w-[330px] ${isActive ? "cursor-grab active:cursor-grabbing" : "cursor-pointer"} ${isDark ? "border-black/10 bg-[#efefeb] text-[#111] shadow-[0_24px_70px_rgba(0,0,0,0.34)]" : "border-white/12 bg-[#121212] text-white shadow-[0_24px_70px_rgba(0,0,0,0.2)]"}`}
+                style={{
+                  zIndex: 10 - distance,
+                  transformStyle: "preserve-3d",
+                  pointerEvents: distance > 1 ? "none" : "auto",
+                }}
+              >
+                <div className="mb-5 flex items-start justify-between gap-4">
+                  <span className={`font-mono text-[9px] uppercase tracking-[0.16em] ${isDark ? "text-black/38" : "text-white/38"}`}>
+                    Project {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <GripHorizontal className={`h-4 w-4 ${isDark ? "text-black/25" : "text-white/25"}`} />
+                </div>
+
+                <div className="min-h-0 flex-1">
+                  <h3 className="text-[1.65rem] font-semibold leading-none tracking-[-0.055em]">{project.name}</h3>
+                  <p className={`mt-3 line-clamp-3 text-xs leading-relaxed ${isDark ? "text-black/58" : "text-white/58"}`}>
+                    {project.bullets[0]}
+                  </p>
+                </div>
+
+                <div className="mt-4 flex items-end justify-between gap-3 border-t border-current/10 pt-3">
+                  <div className="flex max-w-[235px] flex-wrap gap-1.5">
+                    {technologies.slice(0, 4).map((technology) => (
+                      <span key={technology} className={`rounded-full px-2 py-1 font-mono text-[8px] tracking-[-0.02em] ${isDark ? "bg-black/[0.06] text-black/55" : "bg-white/[0.08] text-white/55"}`}>
+                        {technology}
+                      </span>
+                    ))}
+                    {technologies.length > 4 && (
+                      <span className={`rounded-full px-2 py-1 font-mono text-[8px] ${isDark ? "text-black/38" : "text-white/38"}`}>
+                        +{technologies.length - 4}
+                      </span>
+                    )}
+                  </div>
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`View ${project.name} on GitHub`}
+                    className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-transform duration-300 hover:-translate-y-0.5 ${isDark ? "bg-black text-white" : "bg-white text-black"}`}
+                  >
+                    <ArrowUpRight className="h-3.5 w-3.5" />
+                  </a>
+                </div>
+              </motion.article>
+            )
+          })}
+        </div>
       </div>
-    </motion.div>
+
+      <div className="flex items-center justify-between px-1 pt-1">
+        <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-black/38 dark:text-white/38">
+          Drag · click · explore
+        </span>
+        <div className="flex items-center gap-2">
+          <span className="mr-1 font-mono text-[9px] tabular-nums text-black/42 dark:text-white/42">
+            {String(activeIndex + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}
+          </span>
+          <button
+            type="button"
+            onClick={() => move(-1)}
+            aria-label="Previous project"
+            className="flex h-8 w-8 items-center justify-center rounded-full border border-black/12 text-black/60 transition-colors hover:bg-black hover:text-white dark:border-white/12 dark:text-white/60 dark:hover:bg-white dark:hover:text-black"
+          >
+            <ChevronLeft className="h-3.5 w-3.5" />
+          </button>
+          <button
+            type="button"
+            onClick={() => move(1)}
+            aria-label="Next project"
+            className="flex h-8 w-8 items-center justify-center rounded-full border border-black/12 text-black/60 transition-colors hover:bg-black hover:text-white dark:border-white/12 dark:text-white/60 dark:hover:bg-white dark:hover:text-black"
+          >
+            <ChevronRight className="h-3.5 w-3.5" />
+          </button>
+        </div>
+      </div>
+    </div>
   )
 }
 
-export { ThreeDPhotoCarousel };
+export { ThreeDPhotoCarousel }

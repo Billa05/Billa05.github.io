@@ -1,114 +1,71 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import GitHubCalendar from "react-github-calendar";
-import { Button } from "@/components/ui/button";
-import { FileText, BookOpen } from "lucide-react";
+import { ArrowUpRight, BookOpen, FileText } from "lucide-react"
+import { Card, CardContent, CardHeader } from "@/components/ui/card"
+import { LazyGitHubCalendar } from "@/components/portfolio/LazyGitHubCalendar"
 
-export function WorkExperienceCard({ isDark }: { isDark: boolean }) {
-  const experiences = [
-    {
-      company: "Nethermind",
-      role: "Software Engineer Intern",
-    },
-    {
-      company: "Samsung R&D Bangalore",
-      role: "Samsung PRISM Intern",
-    },
-    {
-      company: "L&T Energy Hydrocarbon",
-      role: "IT Intern",
-    },
-  ];
+const experiences = [
+  { company: "Nethermind", role: "Software Engineer Intern" },
+  { company: "Samsung R&D Bangalore", role: "Samsung PRISM Intern" },
+  { company: "L&T Energy Hydrocarbon", role: "IT Intern" },
+]
 
+export function WorkExperienceCard() {
   return (
-    <Card
-      className={`h-full flex flex-col overflow-hidden rounded-tl-3xl border-2 transition-colors duration-300 ${
-        isDark ? "bg-black/70 border-white/20" : "bg-white/50 border-black/20"
-      }`}
-    >
-      <CardHeader className="flex-shrink-0">
-        <CardTitle
-          className={`text-xl font-light transition-colors duration-300 ${isDark ? "text-white" : "text-black"}`}
-        >
-          Work Experiences
-        </CardTitle>
+    <Card className="portfolio-panel flex h-full flex-col overflow-hidden rounded-[24px] border-0 text-black transition-colors duration-500 dark:text-white">
+      <CardHeader className="space-y-0 px-5 pb-3 pt-5 sm:px-6 sm:pt-6 lg:px-7 lg:pt-7">
+        <div className="mb-3 flex items-center gap-3 text-black/50 dark:text-white/50">
+          <span className="section-index">02 / Experience</span>
+          <span className="hairline h-px w-10" />
+        </div>
+        <h2 className="text-2xl font-medium tracking-[-0.04em] sm:text-[1.75rem]">Where I&apos;ve worked</h2>
       </CardHeader>
-      <CardContent className="flex-1 min-h-0 overflow-hidden">
-        <div className="flex flex-col md:flex-row gap-6 items-stretch h-full">
-          {/* Left: Timeline (1/3) */}
-          <div className="w-full md:w-1/3 min-w-[120px] flex flex-col justify-center mb-6 md:mb-0">
-            <div className="relative ml-2 md:ml-4 pl-2 md:pl-4 border-l transition-colors duration-300" style={{ borderColor: isDark ? "rgba(255,255,255,0.2)" : "rgba(0,0,0,0.2)" }}>
-              {experiences.map((exp, idx) => (
-                <div key={exp.company} className="mb-8 last:mb-0 flex items-start gap-4">
-                  {/* Timeline Dot */}
-                  <span
-                    className={`absolute -left-2 w-4 h-4 rounded-full border-2 transition-colors duration-300 ${
-                      idx === 0
-                        ? isDark
-                          ? "border-white bg-white"
-                          : "border-black bg-black"
-                        : isDark
-                        ? "border-white/40 bg-black"
-                        : "border-black/40 bg-white"
-                    }`}
-                    style={{ top: `calc(${idx * 3.5}rem + 0.25rem)` }}
-                  ></span>
-                  <div className="flex flex-col">
-                    <span className={`font-semibold text-base md:text-base text-sm transition-colors duration-300 ${isDark ? "text-white" : "text-black"}`}>{exp.company}</span>
-                    <span className={`text-xs md:text-sm font-light transition-colors duration-300 ${isDark ? "text-white/70" : "text-black/70"}`}>{exp.role}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
+
+      <CardContent className="grid min-h-0 flex-1 gap-5 px-5 pb-3 pt-2 sm:px-6 md:grid-cols-[0.78fr_1.22fr] lg:px-7">
+        <ol className="flex flex-col justify-center">
+          {experiences.map((experience, index) => (
+            <li
+              key={experience.company}
+              className="group relative border-l border-black/12 pb-5 pl-5 last:border-transparent last:pb-0 dark:border-white/14"
+            >
+              <span className={`absolute -left-[5px] top-1 h-[9px] w-[9px] rounded-full border transition-transform duration-300 group-hover:scale-150 ${index === 0 ? "border-black bg-black dark:border-white dark:bg-white" : "border-black/35 bg-[#e9e9e5] dark:border-white/35 dark:bg-[#151515]"}`} />
+              <span className="mb-1 block font-mono text-[9px] uppercase tracking-[0.16em] text-black/38 dark:text-white/38">
+                0{index + 1}
+              </span>
+              <h3 className="text-sm font-medium leading-tight tracking-[-0.02em] sm:text-[15px]">{experience.company}</h3>
+              <p className="mt-1 text-[11px] text-black/52 dark:text-white/52 sm:text-xs">{experience.role}</p>
+            </li>
+          ))}
+        </ol>
+
+        <div className="flex min-w-0 flex-col justify-center rounded-2xl border border-black/10 bg-black/[0.025] p-3 dark:border-white/10 dark:bg-white/[0.035]">
+          <div className="mb-2 flex items-center justify-between">
+            <span className="font-mono text-[9px] uppercase tracking-[0.14em] text-black/48 dark:text-white/48">GitHub activity</span>
+            <span className="flex items-center gap-1.5 font-mono text-[9px] uppercase tracking-[0.12em] text-black/38 dark:text-white/38">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" /> Live
+            </span>
           </div>
-          {/* Right: GitHub Contribution Graph (2/3) */}
-          <div className="w-full md:w-2/3 flex flex-col items-center justify-center min-h-0">
-            <span className={`mb-2 text-xs md:text-sm font-semibold tracking-wide uppercase flex-shrink-0 ${isDark ? "text-white/80" : "text-black/80"}`}>GitHub Contributions</span>
-            <div className="w-full overflow-x-auto overflow-y-hidden min-h-0 flex items-center">
-              <GitHubCalendar
-                username="billa05"
-                colorScheme={isDark ? "dark" : "light"}
-                blockSize={10}
-                blockMargin={3}
-                fontSize={10}
-                style={{ width: "100%", minWidth: 320 }}
-                theme={isDark ? {
-                  light: ["#222", "#444", "#666", "#888", "#fff"],
-                  dark: ["#fff", "#bbb", "#888", "#444", "#222"],
-                } : {
-                  light: ["#eee", "#ccc", "#aaa", "#888", "#111"],
-                  dark: ["#111", "#888", "#aaa", "#ccc", "#eee"],
-                }}
-              />
-            </div>
+          <div className="min-w-0 overflow-x-auto overflow-y-hidden [scrollbar-color:rgba(127,127,127,0.35)_transparent] [scrollbar-width:thin]">
+            <LazyGitHubCalendar />
           </div>
         </div>
       </CardContent>
-      {/* Action Buttons at the bottom */}
-      <div className="flex flex-col md:flex-row justify-end gap-3 px-3 md:px-6 pb-4 md:pb-6 mt-auto pt-3 w-full flex-shrink-0">
-        <Button
-          variant="ghost"
-          className={`transition-colors duration-300 px-4 py-2 rounded-md border backdrop-blur-md w-full md:w-auto
-            ${isDark
-              ? "bg-white/10 border-white/30 text-white hover:bg-white/20 hover:border-white/50"
-              : "bg-black/10 border-black/30 text-black hover:bg-black/20 hover:border-black/50"}
-          `}
-          asChild
+
+      <div className="flex flex-wrap justify-end gap-2 px-5 pb-5 pt-2 sm:px-6 sm:pb-6 lg:px-7">
+        <a
+          href="/resume"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group flex h-9 items-center gap-2 rounded-full border border-black/12 px-3.5 font-mono text-[10px] uppercase tracking-[0.08em] text-black/70 transition-all duration-300 hover:border-black/30 hover:bg-black hover:text-white dark:border-white/12 dark:text-white/70 dark:hover:border-white/30 dark:hover:bg-white dark:hover:text-black"
         >
-          <a href="/resume" target="_blank" rel="noopener noreferrer">
-            <FileText className="mr-2" /> Resume
-          </a>
-        </Button>
-        <Button
-          variant="ghost"
-          className={`transition-colors duration-300 px-4 py-2 rounded-md border backdrop-blur-md w-full md:w-auto
-            ${isDark
-              ? "bg-white/10 border-white/30 text-white hover:bg-white/20 hover:border-white/50"
-              : "bg-black/10 border-black/30 text-black hover:bg-black/20 hover:border-black/50"}
-          `}
+          <FileText className="h-3.5 w-3.5" /> Resume
+          <ArrowUpRight className="h-3 w-3 opacity-40 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+        </a>
+        <button
+          type="button"
+          className="flex h-9 items-center gap-2 rounded-full border border-black/12 px-3.5 font-mono text-[10px] uppercase tracking-[0.08em] text-black/70 transition-all duration-300 hover:border-black/30 hover:bg-black hover:text-white dark:border-white/12 dark:text-white/70 dark:hover:border-white/30 dark:hover:bg-white dark:hover:text-black"
         >
-          <BookOpen className="mr-2" /> Blog
-        </Button>
+          <BookOpen className="h-3.5 w-3.5" /> Blog
+        </button>
       </div>
     </Card>
-  );
-} 
+  )
+}

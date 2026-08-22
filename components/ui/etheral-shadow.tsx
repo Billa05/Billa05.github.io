@@ -159,7 +159,8 @@ export function Component({
                 <div
                     style={{
                         backgroundColor: color,
-                        maskImage: `url('https://framerusercontent.com/images/ceBGguIpUU8luwByxuQz79t7To.png')`,
+                        maskImage: "url('/shadow-mask.webp')",
+                        maskMode: "alpha",
                         maskSize: sizing === "stretch" ? "100% 100%" : "cover",
                         maskRepeat: "no-repeat",
                         maskPosition: "center",
@@ -176,10 +177,19 @@ export function Component({
                     left: "50%",
                     transform: "translate(-50%, -50%)",
                     textAlign: "center",
-                    zIndex: 10
+                    zIndex: 10,
+                    width: "min(64vw, 840px)",
+                    opacity: 0.13
                 }}
             >
-                <img src="sig1.png" alt="" />
+                <img
+                    src="/sig1.webp"
+                    alt=""
+                    width="640"
+                    height="311"
+                    decoding="async"
+                    style={{ width: "100%", height: "auto" }}
+                />
                 
             </div>
 
@@ -188,7 +198,7 @@ export function Component({
                     style={{
                         position: "absolute",
                         inset: 0,
-                        backgroundImage: `url("https://framerusercontent.com/images/g0QcWrxr87K0ufOxIUFBakwYA8.png")`,
+                        backgroundImage: "url('/noise.png')",
                         backgroundSize: noise.scale * 200,
                         backgroundRepeat: "repeat",
                         opacity: noise.opacity / 2

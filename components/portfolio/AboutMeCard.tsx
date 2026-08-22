@@ -31,7 +31,7 @@ export function AboutMeCard() {
       <CardContent className="relative flex flex-1 flex-col justify-between px-5 pb-5 pt-3 sm:px-6 sm:pb-6 lg:px-7 lg:pb-7">
         <div className="grid max-w-3xl gap-3 text-[13px] leading-relaxed text-black/68 dark:text-white/68 sm:grid-cols-2 sm:gap-8 sm:text-sm">
           <p>
-            I work across distributed infrastructure, AI, and blockchain—from architecture and protocol design through implementation and deployment.
+            I work on distributed infrastructure, AI, and blockchain systems, from architecture and protocol design through implementation and deployment.
           </p>
           <p>
             I turn ambiguous requirements into maintainable platforms and developer tooling, with an emphasis on testing, operational reliability, and measurable outcomes.

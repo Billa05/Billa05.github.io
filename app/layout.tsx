@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Biresh Biswas — Software Engineer',
+  title: 'Biresh Biswas | Software Engineer',
   description: 'Portfolio of Biresh Biswas, a software engineer building useful systems across web, AI, cloud, and onchain technology.',
 }
 

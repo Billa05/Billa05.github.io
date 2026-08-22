@@ -6,19 +6,19 @@ const experiences = [
   {
     company: "Summer of Bitcoin",
     role: "Software Engineer",
-    period: "May 2026 — Present",
+    period: "May 2026 to Present",
     stack: "Rust · Lightning · gRPC",
   },
   {
     company: "Nethermind",
     role: "Software Engineer Intern",
-    period: "Jan — Apr 2026",
+    period: "Jan to Apr 2026",
     stack: "DeFi · Multi-chain · Python",
   },
   {
     company: "Samsung R&D",
     role: "Research Intern · Part-time",
-    period: "Sep 2025 — Apr 2026",
+    period: "Sep 2025 to Apr 2026",
     stack: "PyTorch · DeepSpeed · FSDP",
   },
 ]

@@ -1,11 +1,26 @@
-import { ArrowUpRight, BookOpen, FileText } from "lucide-react"
+import { ArrowUpRight, FileText, Mail } from "lucide-react"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { LazyGitHubCalendar } from "@/components/portfolio/LazyGitHubCalendar"
 
 const experiences = [
-  { company: "Nethermind", role: "Software Engineer Intern" },
-  { company: "Samsung R&D Bangalore", role: "Samsung PRISM Intern" },
-  { company: "L&T Energy Hydrocarbon", role: "IT Intern" },
+  {
+    company: "Summer of Bitcoin",
+    role: "Software Engineer",
+    period: "May 2026 — Present",
+    stack: "Rust · Lightning · gRPC",
+  },
+  {
+    company: "Nethermind",
+    role: "Software Engineer Intern",
+    period: "Jan — Apr 2026",
+    stack: "DeFi · Multi-chain · Python",
+  },
+  {
+    company: "Samsung R&D",
+    role: "Research Intern · Part-time",
+    period: "Sep 2025 — Apr 2026",
+    stack: "PyTorch · DeepSpeed · FSDP",
+  },
 ]
 
 export function WorkExperienceCard() {
@@ -27,11 +42,13 @@ export function WorkExperienceCard() {
               className="group relative border-l border-black/12 pb-5 pl-5 last:border-transparent last:pb-0 dark:border-white/14"
             >
               <span className={`absolute -left-[5px] top-1 h-[9px] w-[9px] rounded-full border transition-transform duration-300 group-hover:scale-150 ${index === 0 ? "border-black bg-black dark:border-white dark:bg-white" : "border-black/35 bg-[#e9e9e5] dark:border-white/35 dark:bg-[#151515]"}`} />
-              <span className="mb-1 block font-mono text-[9px] uppercase tracking-[0.16em] text-black/38 dark:text-white/38">
-                0{index + 1}
-              </span>
+              <div className="mb-1 flex flex-wrap items-center justify-between gap-x-2 gap-y-0.5 font-mono text-[8px] uppercase tracking-[0.12em] text-black/38 dark:text-white/38">
+                <span>0{index + 1}</span>
+                <span>{experience.period}</span>
+              </div>
               <h3 className="text-sm font-medium leading-tight tracking-[-0.02em] sm:text-[15px]">{experience.company}</h3>
               <p className="mt-1 text-[11px] text-black/52 dark:text-white/52 sm:text-xs">{experience.role}</p>
+              <p className="mt-1 font-mono text-[8px] tracking-[0.02em] text-black/35 dark:text-white/35">{experience.stack}</p>
             </li>
           ))}
         </ol>
@@ -59,12 +76,12 @@ export function WorkExperienceCard() {
           <FileText className="h-3.5 w-3.5" /> Resume
           <ArrowUpRight className="h-3 w-3 opacity-40 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         </a>
-        <button
-          type="button"
+        <a
+          href="mailto:contactbiresh@gmail.com"
           className="flex h-9 items-center gap-2 rounded-full border border-black/12 px-3.5 font-mono text-[10px] uppercase tracking-[0.08em] text-black/70 transition-all duration-300 hover:border-black/30 hover:bg-black hover:text-white dark:border-white/12 dark:text-white/70 dark:hover:border-white/30 dark:hover:bg-white dark:hover:text-black"
         >
-          <BookOpen className="h-3.5 w-3.5" /> Blog
-        </button>
+          <Mail className="h-3.5 w-3.5" /> Email
+        </a>
       </div>
     </Card>
   )

@@ -4,46 +4,45 @@ import { LazyProjectsCarousel } from "@/components/portfolio/LazyProjectsCarouse
 export function ProjectsCard() {
   const projects = [
     {
+      name: "defi-skills",
+      stack: "Python, FastAPI, DeFi, EVM, Multi-chain",
+      github: "https://github.com/NethermindEth/defi-skills",
+      bullets: [
+        "An auditable transaction engine supporting 54 actions across 14 protocol playbooks and 6 EVM chains.",
+      ],
+    },
+    {
+      name: "Outreach",
+      stack: "FastAPI, Next.js, Crawl4AI, GenAI, AWS",
+      github: "https://github.com/Billa05/Outreach",
+      bullets: [
+        "An AI lead-discovery platform spanning query planning, geo-targeted crawling, semantic search, and predictive scoring.",
+      ],
+    },
+    {
+      name: "SplitLoRA",
+      stack: "PyTorch, DeepSpeed, FSDP, LoRA, Hugging Face",
+      github: "https://github.com/Billa05/SplitLora",
+      bullets: [
+        "A distributed fine-tuning architecture for heterogeneous CPU, GPU, and multi-device topologies.",
+      ],
+    },
+    {
+      name: "LDK Server",
+      stack: "Rust, Bitcoin, Lightning, Protobuf, CLI",
+      github: "https://github.com/lightningdevkit/ldk-server/pull/223",
+      bullets: [
+        "Contributed application-defined payment metadata across Protobuf APIs, core conversions, CLI tooling, and end-to-end tests.",
+      ],
+    },
+    {
       name: "HAVEN",
-      stack: "Next.js, NextAuth, Shadcn UI, Tailwind, PostgreSQL, Python",
+      stack: "Next.js, NextAuth, Tailwind, PostgreSQL, Python",
       github: "https://github.com/Billa05/Haven",
       bullets: [
-        "Created an incident-tracking app with emoji-map UI and community upvoting",
+        "An incident-tracking platform with a map-based interface and community upvoting for safer urban living.",
       ],
     },
-    {
-      name: "FintechApp",
-      stack: "React, Node.js, Tailwind, Hasura, GraphQL, MongoDB",
-      github: "https://github.com/Billa05/FintechApp",
-      bullets: [
-        "Developed a fintech app for secure transfers, deposits, and account management",
-      ],
-    },
-    {
-      name: "LabelInsight",
-      stack: "FastAPI, RAG, LangChain, React, Python, MongoDB",
-      github: "https://github.com/Billa05/LabelInsight",
-      bullets: [
-        "Built a barcode scanner app that checks claims vs. actual nutrition using RAG and LangChain",
-      ],
-    },
-    {
-      name: "Nexus",
-      stack: "Next.js, Solidity, Hardhat, Ethers.js, IPFS, Docker, Three.js, GSAP",
-      github: "https://github.com/Billa05/nexus",
-      bullets: [
-        "Built a decentralized research platform with NFT-based contribution tracking and IPFS storage",
-      ],
-    },
-    {
-      name: "PrusaSlicer CLI Docker Workflow",
-      stack: "Docker, Bash, Python, PrusaSlicer CLI, G-code, GCP",
-      github: "https://github.com/Billa05/prusaslicer-cli-docker",
-      bullets: [
-        "Streamlined 3D model slicing using PrusaSlicer CLI in a fully containerized Docker workflow",
-      ],
-    },
-    
   ];
   return (
     <Card

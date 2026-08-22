@@ -1,11 +1,10 @@
-import { ArrowUpRight, Github, Linkedin, Twitter, Mail } from "lucide-react"
+import { ArrowUpRight, Github, Linkedin, Mail } from "lucide-react"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 
 const socials = [
   { icon: Github, label: "GitHub", href: "https://github.com/Billa05" },
   { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/biresh-biswas-95992527b/" },
-  { icon: Twitter, label: "X", href: "https://x.com/Biresh_Biswas/" },
-  { icon: Mail, label: "Email", href: "mailto:workinguse5@gmail.com" },
+  { icon: Mail, label: "Email", href: "mailto:contactbiresh@gmail.com" },
 ]
 
 export function AboutMeCard() {
@@ -25,24 +24,29 @@ export function AboutMeCard() {
           Biresh Biswas
         </h1>
         <p className="mt-3 max-w-2xl text-base font-normal leading-snug tracking-[-0.02em] text-black/65 dark:text-white/65 sm:text-lg lg:text-xl">
-          Building useful systems across web, AI, cloud, and onchain technology.
+          Software engineer designing and shipping production systems.
         </p>
       </CardHeader>
 
       <CardContent className="relative flex flex-1 flex-col justify-between px-5 pb-5 pt-3 sm:px-6 sm:pb-6 lg:px-7 lg:pb-7">
         <div className="grid max-w-3xl gap-3 text-[13px] leading-relaxed text-black/68 dark:text-white/68 sm:grid-cols-2 sm:gap-8 sm:text-sm">
           <p>
-            I&apos;m a 20-year-old B.Tech student at VIT Chennai, interested in thoughtful engineering that creates real-world impact.
+            I work across distributed infrastructure, AI, and blockchain—from architecture and protocol design through implementation and deployment.
           </p>
           <p>
-            I work across full-stack products, backend systems, automation, and decentralized platforms—with care for both logic and experience.
+            I turn ambiguous requirements into maintainable platforms and developer tooling, with an emphasis on testing, operational reliability, and measurable outcomes.
           </p>
         </div>
 
         <div className="mt-6 flex flex-col gap-4 border-t border-black/10 pt-4 dark:border-white/10 sm:flex-row sm:items-end sm:justify-between">
-          <p className="max-w-md font-mono text-[10px] uppercase leading-relaxed tracking-[0.12em] text-black/45 dark:text-white/45 sm:max-w-[250px]">
-            Thoughtful execution · Continuous learning · Real-world impact
-          </p>
+          <div className="max-w-md font-mono text-[10px] uppercase leading-relaxed tracking-[0.1em] text-black/45 dark:text-white/45 sm:max-w-[380px]">
+            <p className="mb-0.5">B.Tech CSE · VIT Chennai · 2027</p>
+            <address className="flex flex-wrap items-center gap-x-1.5 not-italic">
+              <a href="tel:+917058844518" className="whitespace-nowrap transition-colors hover:text-black dark:hover:text-white">+91 70588 44518</a>
+              <span>·</span>
+              <a href="mailto:contactbiresh@gmail.com" className="whitespace-nowrap transition-colors hover:text-black dark:hover:text-white">contactbiresh@gmail.com</a>
+            </address>
+          </div>
           <nav aria-label="Social links" className="flex flex-wrap gap-2 sm:flex-nowrap">
             {socials.map(({ icon: Icon, label, href }) => (
               <a
